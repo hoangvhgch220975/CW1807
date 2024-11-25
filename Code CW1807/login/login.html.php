@@ -166,7 +166,7 @@
   <div class="wrapper">
     <!-- Left section with logo and description -->
     <div class="left-section">
-      <img src="../image/logo.png" alt="CheapDeals Logo" />
+      <img src="../image/logo.jpg" alt="CheapDeals Logo" />
       <h1>CheapDeals</h1>
       <p>
         Your go-to platform for the best deals in electronics, mobile phones,
@@ -178,22 +178,29 @@
     <div class="right-section">
       <form action="login.php" method="POST" class="login-container">
         <h2>Log In</h2>
+        <!-- Input fields -->
         <input type="text" name="username" placeholder="Username" required />
         <input type="password" name="password" placeholder="Password" required />
+
+        <!-- Error message -->
+        <?php if (!empty($error)): ?>
+          <p class="error" style="color: red;"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+
         <button class="button" type="submit">Log In</button>
 
-        <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-
+        <!-- Social login -->
         <p>Or log in with</p>
         <div class="social-login">
           <a href="https://accounts.google.com/" target="_blank">
-            <img src="../image/google.png" alt="Google Login" title="Log in with Google" class="google-logo" />
+            <img src="../image/google.png" alt="Google Login" title="Log in with Google" />
           </a>
           <a href="https://www.facebook.com/login/" target="_blank">
-            <img src="../image/facebook.png" alt="Facebook Login" title="Log in with Facebook" class="facebook-logo" />
+            <img src="../image/facebook.png" alt="Facebook Login" title="Log in with Facebook" />
           </a>
         </div>
 
+        <!-- Additional links -->
         <a href="register.html.php">Don't have an account? Sign up here!</a>
         <a href="#">Forgot password?</a>
       </form>

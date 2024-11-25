@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheapDeals - Connecting You with the Best Phones and Plans</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Footer Styles */
@@ -86,7 +86,66 @@
             font-size: 14px;
             margin-top: 20px;
         }
-        
+
+        .logout-button {
+            font-size: 16px;
+            color: #fff;
+            background-color: #d81920;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 20px;
+            /* Khoảng cách bên trái với icon */
+            transition: background 0.3s ease;
+        }
+
+        /* Ẩn dropdown menu mặc định */
+        .nav-icons .dropdownicon-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1000;
+            width: 250px;
+        }
+
+        /* Hiển thị menu khi có class 'show' */
+        .nav-icons .dropdownicon-menu.show {
+            display: block;
+            margin-left: 70%;
+        }
+
+        /* Hiển thị menu theo cột */
+        .nav-icons .dropdownicon-menu .col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdownicon-menu a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 0;
+            transition: background 0.3s ease;
+        }
+
+        .dropdownicon-menu a:hover {
+            color: #d81920;
+        }
+
+        .dropdownicon-menu a:hover {
+            background-color: #f9f9f9;
+        }
+
+        .nav-icons .icon:hover {
+            color: #0073e6;
+            /* Màu khi hover */
+            transform: scale(1.2);
+            /* Phóng to biểu tượng khi hover */
+        }
     </style>
 </head>
 
@@ -96,8 +155,8 @@
     <header class="navbar">
         <div class="container">
             <!-- Logo -->
-            <a class="logo" href='index.php'>
-                <img src="image/logo.png" alt="Electrophone Logo">
+            <a class="logo" href='../customer/index_user.php'>
+                <img src="../image/logo.png" alt="Electrophone Logo">
             </a>
 
             <!-- Navigation Links -->
@@ -142,10 +201,19 @@
 
             <!-- Icons -->
             <div class="nav-icons">
-                <a href="login/login.html.php" class="icon"><i class="fas fa-shopping-cart" onclick="return confirm('You need to login first')"></i></a>
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
                 <a href="#" class="icon"><i class="fas fa-search"></i></a>
-                <a href="login/login.html.php" class="icon"><i class="fas fa-user" onclick="return confirm('You need to login first')"></i></a>
-                <a href="login/login.html.php" class="login-button">Login</a> <!-- Thêm nút Đăng nhập -->
+                <div class="dropdown">
+                    <a href="#" class="icon dropdown-toggle"><i class="fas fa-user"></i></a>
+                    <div class="dropdownicon-menu">
+                        <div class='col'>
+                            <a href="../customer/profile.php">Profile</a>
+                            <a href="../customer/order_history.php">Purchase History</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="../login/logout.php" class="logout-button">LogOut</a> <!-- Thêm nút Đăng xuất -->
             </div>
 
             <!-- Hamburger menu for mobile -->
@@ -153,62 +221,14 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <a href="#products" class="cta-button">Shop Now</a>
-        </div>
-    </section>
 
 
-    <!-- Include the products section from viewer.html.php -->
-    <?php include('viewer.html.php'); ?>
+    <main class="main">
+        <div class="main">
+            <?= $output; ?>
+        </div>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <!-- Logo and Tagline -->
-        <div class="footer-top">
-            <div class="logo">
-                <img src="image/logo.png" alt="CheapDeal Logo">
-            </div>
-            <p class="tagline">Revolutionizing Affordable Connectivity for Everyone. Bringing you faster service, better deals, and real-time account management – all in one place.</p>
-        </div>
-
-        <!-- Features Section -->
-        <div class="footer-features">
-            <div class="feature">
-                <i class="fas fa-user-circle"></i>
-                <h3>Seamless Real-Time Account Management</h3>
-                <p>Stay in control anytime, anywhere. Update personal details, view usage, and settle bills effortlessly.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-tags"></i>
-                <h3>Exclusive Discounts for App Users</h3>
-                <p>Save 15% on every order through our app. Unlock more discounts tailored to your preferences.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-headset"></i>
-                <h3>Enhanced Customer Support</h3>
-                <p>Get instant responses via our CRM system. No more long waits for issue resolutions.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-cogs"></i>
-                <h3>Customized Deals and Packages</h3>
-                <p>Create your perfect bundle of mobile, broadband, or tablet services to suit your needs.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-credit-card"></i>
-                <h3>Instant Payments and Receipts</h3>
-                <p>Hassle-free transactions with instant email receipts for your records.</p>
-            </div>
-        </div>
-
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 CheapDeal. All Rights Reserved.</p>
-        </div>
-        </div>
-    </footer>
 
 
     <!-- JavaScript to handle dropdown menu -->
@@ -243,8 +263,63 @@
                 });
             }
         });
+
+        // Đóng dropdownicon menu khi nhấn ra ngoài
+        window.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav-icons')) {
+                document.querySelectorAll('.dropdownicon-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
     </script>
 
 </body>
+<!-- Footer -->
+<footer class="footer">
+    <!-- Logo and Tagline -->
+    <div class="footer-top">
+        <div class="logo">
+            <img src="../image/logo.png" alt="CheapDeal Logo">
+        </div>
+        <p class="tagline">Revolutionizing Affordable Connectivity for Everyone. Bringing you faster service, better deals, and real-time account management – all in one place.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="footer-features">
+        <div class="feature">
+            <i class="fas fa-user-circle"></i>
+            <h3>Seamless Real-Time Account Management</h3>
+            <p>Stay in control anytime, anywhere. Update personal details, view usage, and settle bills effortlessly.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-tags"></i>
+            <h3>Exclusive Discounts for App Users</h3>
+            <p>Save 15% on every order through our app. Unlock more discounts tailored to your preferences.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-headset"></i>
+            <h3>Enhanced Customer Support</h3>
+            <p>Get instant responses via our CRM system. No more long waits for issue resolutions.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-cogs"></i>
+            <h3>Customized Deals and Packages</h3>
+            <p>Create your perfect bundle of mobile, broadband, or tablet services to suit your needs.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-credit-card"></i>
+            <h3>Instant Payments and Receipts</h3>
+            <p>Hassle-free transactions with instant email receipts for your records.</p>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 CheapDeal. All Rights Reserved.</p>
+    </div>
+    </div>
+</footer>
+
 
 </html>

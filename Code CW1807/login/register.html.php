@@ -21,7 +21,6 @@
             position: relative;
             background-color: #ffffff;
             padding: 40px 20px 30px 20px;
-            /* Tăng padding trên để có khoảng cách cho logo */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 100%;
@@ -32,18 +31,13 @@
         .logo {
             position: absolute;
             top: 15px;
-            /* Điều chỉnh vị trí logo */
             left: -0pc;
-            /* Điều chỉnh vị trí logo */
             width: 120px;
-            /* Tăng kích thước logo */
             opacity: 0.5;
-            /* Giảm độ đậm để logo mờ đi */
         }
 
         .form h1 {
             margin-top: 40px;
-            /* Tạo khoảng cách giữa logo và tiêu đề */
             font-size: 24px;
             color: #333;
         }
@@ -74,22 +68,44 @@
         .form .button:hover {
             background-color: #7a1313;
         }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <form class="form">
-        <img src="../image/logo.png" alt="Logo" class="logo">
+    <form class="form" method="POST" action="register.html.php">
+        <img src="../image/logo.jpg" alt="Logo" class="logo">
         <h1>Sign <span>Up</span></h1>
-        <input type="text" placeholder="Name">
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <input type="text" placeholder="Email">
-        <input type="text" placeholder="Address">
-        <input type="text" placeholder="Phone Number">
-        <input type="text" placeholder="Credit Card">
+        <?php if (!empty($error)) : ?>
+            <p class="error"><?= htmlspecialchars($error); ?></p>
+        <?php endif; ?>
+        <?php if (!empty($success)) : ?>
+            <p class="success"><?= htmlspecialchars($success); ?></p>
+        <?php endif; ?>
+        <input type="text" name="full_name" placeholder="Name" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="text" name="email" placeholder="Email" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="text" name="phone_number" placeholder="Phone Number" required>
+        <input type="text" name="credit_card_number" placeholder="Credit Card">
+        <div class="mt-6 text-center">
+            <a href="login.php" class="text-[black] hover:underline">Already have an account? Login</a>
+        </div>
         <input type="submit" value="Sign up" class="button">
     </form>
 </body>
 
 </html>
+

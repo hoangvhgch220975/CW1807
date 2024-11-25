@@ -1,7 +1,7 @@
 <?php
 // Bao gồm các file cần thiết
-require_once 'include/database.php';
-require_once 'include/databasefunction.php';
+require_once '../include/database.php';
+require_once '../include/databasefunction.php';
 
 // Gọi hàm để lấy tất cả thiết bị
 $devices = getAllDevices();
@@ -16,7 +16,7 @@ $packages = getAllPackages();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChealDeal.com</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
         /* CSS cho phần Products, Services, Packages */
         .section-heading {
@@ -163,9 +163,15 @@ $packages = getAllPackages();
 </head>
 
 <body>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+    </section>
     <!-- Products Section -->
     <section class="products" id="products">
-        <h2 class="section-heading" style="margin-right: 70%;">Best Seller 🔥</h2>
+        <h2 class="section-heading" style="margin-right: 70%;">Hot Search 🔥</h2>
         <div class="product-container">
             <button class="arrow-btn left-arrow disabled" data-target="productGrid">&#9664;</button>
             <div class="product-grid" id="productGrid">
@@ -177,7 +183,7 @@ $packages = getAllPackages();
                                 <div class="product-stock">Available: <?= htmlspecialchars($device['stock']) ?></div>
                             </div>
                             <a href="detail_device.php?device_id=<?= $device['device_id']; ?>">
-                                <img src="<?= 'image/' . htmlspecialchars($device['image']); ?>" alt="<?= htmlspecialchars($device['name']); ?>">
+                                <img src="<?= '../image/' . htmlspecialchars($device['image']); ?>" alt="<?= htmlspecialchars($device['name']); ?>">
                             </a>
                             <a href="detail_device.php?device_id=<?= $device['device_id']; ?>">
                                 <h3 class="product-name"><?= htmlspecialchars($device['name']); ?></h3>
@@ -201,7 +207,7 @@ $packages = getAllPackages();
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <h2 class="section-heading">Our Services 🌟</h2>
+        <h2 class="section-heading">Recommend for you 🌟</h2>
         <div class="product-container">
             <button class="arrow-btn left-arrow disabled" data-target="serviceGrid">&#9664;</button>
             <div class="product-grid" id="serviceGrid">
@@ -209,7 +215,7 @@ $packages = getAllPackages();
                     <?php foreach ($services as $service): ?>
                         <div class="product-card">
                             <a href="detail_service.php?service_id=<?= $service['service_id']; ?>">
-                                <img src="<?= 'image/' . htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>">
+                                <img src="<?= '../image/' . htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>">
                             </a>
                             <a href="detail_service.php?service_id=<?= $service['service_id']; ?>">
                                 <h3 class="product-name"><?= htmlspecialchars($service['name']); ?></h3>
@@ -241,7 +247,7 @@ $packages = getAllPackages();
                     <?php foreach ($packages as $package): ?>
                         <div class="product-card">
                             <a href="detail_package.php?package_id=<?= $package['package_id']; ?>">
-                                <img src="<?= 'image/' . htmlspecialchars($package['image']); ?>" alt="<?= htmlspecialchars($package['name']); ?>">
+                                <img src="<?= '../image/' . htmlspecialchars($package['image']); ?>" alt="<?= htmlspecialchars($package['name']); ?>">
                             </a>
                             <a href="detail_package.php?package_id=<?= $package['package_id']; ?>">
                                 <h3 class="product-name"><?= htmlspecialchars($package['name']); ?></h3>
