@@ -333,7 +333,7 @@
                     <div class="dropdown-menu">
                         <div class="column">
                             <h3>Devices</h3>
-                            <a href="../mobileOnly.php">Shop all Phones</a>
+                            <a href="../customer/all_mobile.php">Shop all Phones</a>
                             <a href="#">iPhone</a>
                             <a href="#">Samsung Galaxy Phones</a>
                             <a href="#">Apple</a>
@@ -379,7 +379,7 @@
             </div>
             <!-- Icons -->
             <div class="nav-icons">
-                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+                <a href="../template/cart.html.php" class="icon"><i class="fas fa-shopping-cart"></i></a>
 
                 <div class="dropdown">
                     <a href="#" class="icon dropdown-toggle"><i class="fas fa-user"></i></a>

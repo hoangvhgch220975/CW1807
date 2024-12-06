@@ -189,11 +189,29 @@ if (!$product) {
         .comment-text {
             margin-top: 5px;
         }
+        button[type="submit"] {
+            background-color: #d81920;
+            /* Nền đỏ */
+            color: white;
+            /* Màu chữ trắng */
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #b5151c;
+            /* Nền đỏ tối hơn khi hover */
+        }
     </style>
 </head>
 
 <body>
-    <a class="back-to-products" >←</a>
+    <a class="back-to-products">←</a>
     <div class="product-details-container">
         <div class="product-image">
             <img src="../image/imagedevice/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
@@ -214,9 +232,15 @@ if (!$product) {
                 <div class="price">Price: $<?= htmlspecialchars(number_format($product['price'], 2)); ?></div>
                 <div class="stock">Stock: <?= htmlspecialchars($product['stock']); ?> units available</div>
             </div>
-            <div class="cta-buttons">
-                <a href="#">Add to Cart</a>
-            </div>
+            <form action="../customer/add_to_cart.php" method="POST">
+                <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['device_id']); ?>">
+                <input type="hidden" name="product_name" value="<?= htmlspecialchars($product['name']); ?>">
+                <input type="hidden" name="price" value="<?= htmlspecialchars($product['price']); ?>">
+                <input type="hidden" name="image" value="<?= htmlspecialchars($product['image']); ?>">
+                <input type="hidden" name="quantity" value="1" min="1" required>
+                <button type="submit">Add to Cart</button>
+            </form>
+
         </div>
     </div>
 

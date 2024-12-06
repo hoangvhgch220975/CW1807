@@ -1,7 +1,7 @@
 <?php
 // Include necessary files for database connection and functions
-require_once '../include/database.php';
-require_once '../include/databasefunction.php';
+require_once 'include/database.php';
+require_once 'include/databasefunction.php';
 
 // Check if the `package_id` is set in the URL
 if (!isset($_GET['package_id'])) {
@@ -18,7 +18,7 @@ if (!$package) {
     echo "Package not found.";
     exit;
 }
-
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@ if (!$package) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($package['name']); ?> - Package Details</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,7 +46,6 @@ if (!$package) {
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-top: 150px;
         }
 
         .package-image {
@@ -150,7 +149,17 @@ if (!$package) {
             margin-bottom: 10px;
         }
 
-
+        .back-to-homepage {
+            position: absolute;
+            top: -40px;
+            left: 20px;
+            text-decoration: none;
+            background: #333;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
 
         .back-to-homepage:hover {
             background: #555;
@@ -181,26 +190,6 @@ if (!$package) {
         .comment-text {
             margin-top: 5px;
         }
-
-
-        button[type="submit"] {
-            background-color: #d81920;
-            /* Nền đỏ */
-            color: white;
-            /* Màu chữ trắng */
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #b5151c;
-            /* Nền đỏ tối hơn khi hover */
-        }
     </style>
 </head>
 
@@ -208,23 +197,23 @@ if (!$package) {
     <a class="back-to-homepage" href="index.php">←</a>
     <div class="package-details-container">
         <div class="package-image">
-            <img src="../image/packetimage/<?= htmlspecialchars($package['image']); ?>" alt="<?= htmlspecialchars($package['name']); ?>">
+            <img src="image/packetimage/<?= htmlspecialchars($package['image']); ?>" alt="<?= htmlspecialchars($package['name']); ?>">
         </div>
         <div class="package-info">
             <h1><?= htmlspecialchars($package['name']); ?></h1>
             <div class="category">Category: <?= htmlspecialchars($package['category']); ?></div>
-
+            
             <?php if (isset($package['star_rating'])): ?>
-                <div class="rating">
-                    <strong>Rating:</strong>
-                    <?php for ($i = 0; $i < $package['star_rating']; $i++): ?>
-                        <span class="star">★</span>
-                    <?php endfor; ?>
-                </div>
-            <?php endif; ?>
+    <div class="rating">
+        <strong>Rating:</strong>
+        <?php for ($i = 0; $i < $package['star_rating']; $i++): ?>
+            <span class="star">★</span>
+        <?php endfor; ?>
+    </div>
+<?php endif; ?>
 
             <p class="price">Price: $<?= htmlspecialchars(number_format($package['price'], 2)); ?></p>
-
+            
             <!-- Display "Include Device" instead of "Quantity Sold" -->
             <div class="quantity-info">
                 <p><strong>Include Device:</strong> <?= htmlspecialchars($package['device_include']); ?></p>
@@ -240,17 +229,9 @@ if (!$package) {
             <div class="details"><strong>Description:</strong> <?= htmlspecialchars($package['description']); ?></div>
 
             <div class="cta-buttons">
+                <a href="#">Add to Cart</a>
                 <a href="#">Customize</a>
-                <!-- <a href="#">Add to Cart</a> -->
             </div>
-            <form action="../customer/add_to_cart.php" method="POST">
-                <input type="hidden" name="package_id" value="<?= htmlspecialchars($package['package_id']); ?>">
-                <input type="hidden" name="package_name" value="<?= htmlspecialchars($package['name']); ?>">
-                <input type="hidden" name="price" value="<?= htmlspecialchars($package['price']); ?>">
-                <input type="hidden" name="image" value="<?= htmlspecialchars($package['image']); ?>">
-                <input type="hidden" name="quantity" value="1" min="1" required>
-                <button type="submit">Add to Cart</button>
-            </form>
         </div>
     </div>
 
@@ -259,7 +240,7 @@ if (!$package) {
         <?php if ($allComments && count($allComments) > 0): ?>
             <?php foreach ($allComments as $comment): ?>
                 <div class="comment-item">
-                    <img src="../image/user-icon.png" alt="User Icon">
+                    <img src="image/user-icon.png" alt="User Icon">
                     <div class="comment-content">
                         <div class="comment-header">
                             <strong><?= htmlspecialchars($comment['reviewer']); ?></strong>
@@ -279,3 +260,7 @@ if (!$package) {
 </body>
 
 </html>
+<?php 
+$output = ob_get_clean();
+include 'template/layout.html.php';
+?>

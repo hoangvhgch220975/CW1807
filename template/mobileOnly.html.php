@@ -140,10 +140,10 @@ $devices = getPhones($searchQuery);
                                 <div class="product-category"><?= htmlspecialchars($device['category']); ?></div>
                                 <div class="product-stock">Available: <?= htmlspecialchars($device['stock']) ?></div>
                             </div>
-                            <a href="detail_device.php?device_id=<?= $device['device_id']; ?>">
+                            <a href="device_detail.php?device_id=<?= $device['device_id']; ?>">
                                 <img src="<?= 'image/imagedevice/' . htmlspecialchars($device['image']); ?>" alt="<?= htmlspecialchars($device['name']); ?>">
                             </a>
-                            <a href="detail_device.php?device_id=<?= $device['device_id']; ?>">
+                            <a href="device_detail.php?device_id=<?= $device['device_id']; ?>">
                                 <h3 class="product-name"><?= htmlspecialchars($device['name']); ?></h3>
                             </a>
                             <p class="product-price">Price: $<?= htmlspecialchars(number_format($device['price'], 2)); ?></p>

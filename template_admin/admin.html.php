@@ -6,13 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    <link href="../style.css" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white min-h-screen">
-
+    
     <!-- Main Content -->
+    <h1 class="text-3xl font-semibold text-gray-900">Dashboard</h1>
+    <p class="text-gray-600">Manage your platform settings and users from this area.</p>
     <div class="container mx-auto bg-white text-gray-900 rounded-xl shadow-xl p-10 max-w-lg w-full transform hover:scale-105 transition-transform duration-500 ease-in-out mt-10">
         <div class="text-center mb-6">
             <!-- Add Icon -->
@@ -31,8 +34,8 @@
 
         <!-- Buttons for Actions -->
         <div class="flex justify-around mt-8 space-x-4">
-            <a href="#" class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition duration-300 text-center">Manage Users</a>
-            <a href="#" class="bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-orange-500 hover:to-red-600 transition duration-300 text-center">Manage Devices</a>
+            <a href="../admin/user.php" class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition duration-300 text-center">Manage Users</a>
+            <a href="../" class="bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-orange-500 hover:to-red-600 transition duration-300 text-center">Manage Devices</a>
             <a href="#" class="bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-purple-500 hover:to-pink-600 transition duration-300 text-center">Manage Services</a>
             <a href="#" class="bg-gradient-to-r from-teal-400 to-cyan-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-teal-500 hover:to-cyan-600 transition duration-300 text-center">Manage Packages</a>
         </div>

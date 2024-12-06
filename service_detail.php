@@ -1,8 +1,7 @@
 <?php
-//detail_service.html.php
 // Include necessary files for database connection and functions
-require_once '../include/database.php';
-require_once '../include/databasefunction.php';
+require_once 'include/database.php';
+require_once 'include/databasefunction.php';
 
 // Check if the `service_id` is set in the URL
 if (!isset($_GET['service_id'])) {
@@ -21,7 +20,7 @@ if (!$service || !$serviceDetails) {
     exit;
 }
 
-
+ob_start();
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +30,7 @@ if (!$service || !$serviceDetails) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($service['name']); ?> - Service Details</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* Global styles */
         body {
@@ -188,25 +187,6 @@ if (!$service || !$serviceDetails) {
         .comment-text {
             margin-top: 5px;
         }
-
-        button[type="submit"] {
-            background-color: #d81920;
-            /* Nền đỏ */
-            color: white;
-            /* Màu chữ trắng */
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #b5151c;
-            /* Nền đỏ tối hơn khi hover */
-        }
     </style>
 </head>
 
@@ -214,7 +194,7 @@ if (!$service || !$serviceDetails) {
     <a class="back-to-homepage" href="index.php">← Back to Services</a>
     <div class="service-details-container">
         <div class="service-image">
-            <img src="../image/serviceimage/<?= htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>">
+            <img src="image/serviceimage/<?= htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>">
         </div>
         <div class="service-info">
             <h1><?= htmlspecialchars($service['name']); ?></h1>
@@ -240,17 +220,9 @@ if (!$service || !$serviceDetails) {
             </div>
 
             <div class="cta-buttons">
-                <!-- <a href="#">Add to Cart</a> -->
+                <a href="#">Add to Cart</a>
                 <a href="#">Customize</a>
             </div>
-            <form action="../customer/add_to_cart.php" method="POST">
-                <input type="hidden" name="service_id" value="<?= htmlspecialchars($service['service_id']); ?>">
-                <input type="hidden" name="service_name" value="<?= htmlspecialchars($service['name']); ?>">
-                <input type="hidden" name="price" value="<?= htmlspecialchars($service['price']); ?>">
-                <input type="hidden" name="image" value="<?= htmlspecialchars($service['image']); ?>">
-                <input type="hidden" name="quantity" value="1" min="1" required>
-                <button type="submit">Add to Cart</button>
-            </form>
         </div>
     </div>
     <div class="customer-feedback">
@@ -258,7 +230,7 @@ if (!$service || !$serviceDetails) {
         <?php if ($allComments && count($allComments) > 0): ?>
             <?php foreach ($allComments as $comment): ?>
                 <div class="comment-item">
-                    <img src="../image/user-icon.png" alt="User  Icon">
+                    <img src="image/user-icon.png" alt="User  Icon">
                     <div class="comment-content">
                         <div class="comment-header">
                             <strong><?= htmlspecialchars($comment['reviewer']); ?></strong>
@@ -278,3 +250,7 @@ if (!$service || !$serviceDetails) {
 </body>
 
 </html>
+<?php 
+$output = ob_get_clean();
+include 'template/layout.html.php';
+?>

@@ -1,11 +1,11 @@
 <?php
 // Bao gồm các file cần thiết
-require_once 'include/database.php';
-require_once 'include/databasefunction.php';
+require_once '../include/database.php';
+require_once '../include/databasefunction.php';
 
-// Gọi hàm để lấy tất cả thiết bị thuộc category 'Tablet'
+// Gọi hàm để lấy tất cả thiết bị thuộc category 'Phone'
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
-$devices = getTablets($searchQuery);
+$devices = getPhones($searchQuery);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $devices = getTablets($searchQuery);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChealDeal.com</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
         /* CSS cho phần Products, Services, Packages */
         .section-heading {
@@ -122,9 +122,15 @@ $devices = getTablets($searchQuery);
 </head>
 
 <body>
+    <!-- Hero Section -->
+    <section class="hero" id="home" style="background-image: url('../image/mobileOnly.png')">
+        <div class="hero-content">
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+    </section>
     <!-- Products Section -->
     <section class="products" id="products">
-        <h2 class="section-heading">Choose your Tablet</h2>
+        <h2 class="section-heading">Choose your Mobile Phone</h2>
         <div class="product-container">
             <div class="product-grid" id="productGrid">
                 <?php if ($devices): ?>
@@ -134,10 +140,10 @@ $devices = getTablets($searchQuery);
                                 <div class="product-category"><?= htmlspecialchars($device['category']); ?></div>
                                 <div class="product-stock">Available: <?= htmlspecialchars($device['stock']) ?></div>
                             </div>
-                            <a href="device_detail.php?device_id=<?= $device['device_id']; ?>">
-                                <img src="<?= 'image/imagedevice/' . htmlspecialchars($device['image']); ?>" alt="<?= htmlspecialchars($device['name']); ?>">
+                            <a href="../customer/detail_device.php ?device_id=<?= $device['device_id']; ?>">
+                                <img src="<?= '../image/imagedevice/' . htmlspecialchars($device['image']); ?>" alt="<?= htmlspecialchars($device['name']); ?>">
                             </a>
-                            <a href="device_detail.php?device_id=<?= $device['device_id']; ?>">
+                            <a href="../customer/detail_device.php?device_id=<?= $device['device_id']; ?>">
                                 <h3 class="product-name"><?= htmlspecialchars($device['name']); ?></h3>
                             </a>
                             <p class="product-price">Price: $<?= htmlspecialchars(number_format($device['price'], 2)); ?></p>

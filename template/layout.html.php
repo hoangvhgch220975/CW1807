@@ -391,13 +391,12 @@
                 <a href="#">Support <span class="dropdown-arrow">&#9662;</span></a>
             </nav>
 
-            <!-- Icons -->
 
 
             <!-- Tìm kiếm -->
             <!-- Search Form -->
             <div class="search-container">
-                <form action="customer/search.php" method="get" class="search-form">
+                <form action="search.php" method="get" class="search-form">
                     <input type="text" name="search" placeholder="Search for products..." class="search-input" />
                     <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
                 </form>

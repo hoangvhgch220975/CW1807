@@ -16,9 +16,6 @@ try {
     $output = 'Unable to connect to the database server';
     echo $e;
 }
-if ($isLoggedIn) {
-    include "template/layout_user.html.php";
-} else {
-    include "template/layout.html.php";
-}
+
+include "template/layout.html.php";
 ?>

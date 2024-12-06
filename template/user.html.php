@@ -168,6 +168,28 @@
                 <a href="#products" class="cta-button">Shop Now</a>
             </div>
         </section>
+
+        <!-- Submenu -->
+    <section class="submenu">
+        <div class="submenu-container">
+            <div class="submenu-card">
+                <img src="https://www.vodafone.com.au/images/icons/mobile-mid.svg" alt="Mobile" />
+                <a href="../customer/mobileOnly.php">Mobile</a>
+            </div>
+            <div class="submenu-card">
+                <img
+                    src="https://www.vodafone.com.au/images/icons/tablet-mid.svg"
+                    alt="Tablet" />
+                <a href="../customer/tabletOnly.php">Tablet</a>
+            </div>
+            <div class="submenu-card">
+                <img
+                    src="https://www.vodafone.com.au/images/icons/home-broadband-mid.svg"
+                    alt="Broandband" />
+                <a href="../customer/broadbandOnly.php">Broadband</a>
+            </div>
+        </div>
+    </section>
         <!-- Products Section -->
         <section class="products" id="products">
             <h2 class="section-heading" style="margin: centre;">Explore our Phone deals</h2>

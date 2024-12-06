@@ -10,7 +10,6 @@ require_once 'database.php';
  * @return array|false Trả về mảng thiết bị nếu thành công, hoặc false nếu thất bại.
  */
 // Hàm lấy tất cả thiết bị (devices)
-// Hàm lấy tất cả thiết bị (devices)
 function getAllDevices($search = '')
 {
     global $pdo;
@@ -23,6 +22,7 @@ function getAllDevices($search = '')
         if ($search) {
             $sql .= " WHERE name LIKE :search";
         }
+        
 
         // Chuẩn bị câu lệnh SQL
         $stmt = $pdo->prepare($sql);
@@ -104,6 +104,44 @@ function getAllServices($searchQuery = '')
         return false;
     }
 }
+
+function searchAll($search = '')
+{
+    global $pdo;
+
+    try {
+        // Bắt đầu câu lệnh SQL cơ bản để kết hợp ba bảng
+        $sql = "
+            (SELECT 'device' AS type, device_id, name FROM devices WHERE name LIKE :search)
+            UNION
+            (SELECT 'package' AS type, package_id, name FROM package WHERE name LIKE :search)
+            UNION
+            (SELECT 'service' AS type, service_id, name FROM service WHERE name LIKE :search)
+        ";
+
+        // Chuẩn bị câu lệnh SQL
+        $stmt = $pdo->prepare($sql);
+
+        // Gán giá trị cho tham số tìm kiếm
+        $stmt->bindValue(':search', '%' . $search . '%');
+
+        // Thực thi câu lệnh SQL
+        $stmt->execute();
+
+        // Trả về tất cả kết quả dưới dạng mảng liên kết
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        // Nếu có lỗi, in ra thông báo lỗi
+        echo "Error: " . $e->getMessage();
+        return [];
+    }
+}
+
+$searchQuery = isset($_GET['search']) ? trim($_GET['search']) : ''; // Trim whitespace
+
+// Gọi hàm tìm kiếm trên cả ba bảng
+$results = searchAll($searchQuery);
+
 
 function getPhones($searchQuery = '')
 {
@@ -206,16 +244,7 @@ function checkUsernameExists($pdo, $username)
     return $stmt->rowCount() > 0;
 }
 
-function getUser($pdo, $account_id)
-{
-    try {
-        $stmt = $pdo->prepare('SELECT * FROM user_info WHERE account_id = :account_id');
-        $stmt->execute([':account_id' => $account_id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        throw new Exception('Error fetching user details: ' . $e->getMessage());
-    }
-}
+
 
 
 function registerUser($pdo, $username, $password, $role)
@@ -332,6 +361,50 @@ function getAllComments()
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
         return false;
+    }
+}
+
+
+// Function to get all user
+function getAllUsers($pdo)
+{
+    try {
+        // Thực hiện JOIN giữa bảng accounts và user_info
+        $sql = "
+            SELECT a.*, ui.full_name, ui.image as user_image
+            FROM accounts a
+            LEFT JOIN user_info ui ON a.account_id = ui.account_id
+            WHERE a.role = 'user'
+        ";
+
+        // Chuẩn bị và thực thi câu lệnh SQL
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        throw new Exception('Error fetching users: ' . $e->getMessage());
+    }
+}
+
+function getUserInfo($pdo, $user_id)
+{
+    try {
+        $stmt = $pdo->prepare('SELECT * FROM user_info WHERE user_id = :user_id');
+        $stmt->execute([':user_id' => $user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        throw new Exception('Error fetching user details: ' . $e->getMessage());
+    }
+}
+
+
+function getUser($pdo, $account_id)
+{
+    try {
+        $stmt = $pdo->prepare('SELECT * FROM user_info WHERE account_id = :account_id');
+        $stmt->execute([':account_id' => $account_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        throw new Exception('Error fetching user details: ' . $e->getMessage());
     }
 }
 
