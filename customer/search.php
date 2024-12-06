@@ -7,18 +7,12 @@
 
 <body>
     <?php
-    session_start(); // Start the session to access session variables
-    $isLoggedIn = isset($_SESSION['account_id']); // Adjust this according to your session variable for logged-in users
 
     $title = 'CheapDeal.com';
     ob_start();
     include '../template/search.html.php';
     $output = ob_get_clean();
-    if ($isLoggedIn) {
-        include '../template/layout_user.html.php';
-    } else {
-        include '../template/layout.html.php';
-    }
+    include '../template/layout_user.html.php';
     ?>
 
 
