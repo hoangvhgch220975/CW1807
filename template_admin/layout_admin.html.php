@@ -143,6 +143,13 @@
             /* Ensures footer stays at the bottom */
         }
 
+        .footer .tagline {
+            font-size: 18px;
+            line-height: 1.5;
+            max-width: 600px;
+            margin-right: 60%;
+        }
+
         .footer-top {
             display: flex;
             align-items: center;
@@ -213,8 +220,8 @@
             <a href="../admin/index_admin.php">Home</a>
             <a href="../admin/user.php">User </a>
             <a href="../admin/device.php">Device</a>
-            <a href="#">Service</a>
-            <a href="#">Package</a>
+            <a href="../admin/service.php">Service</a>
+            <a href="../admin/package.php">Package</a>
             <a href="../login/logout.php" class="logout-button">Logout</a>
         </div>
     </nav>
@@ -225,13 +232,10 @@
         <?= $output; ?>
     </main>
 
-
-</body>
-<!-- Footer -->
-<footer class="footer">
+    <footer class="footer">
     <div class="footer-top">
         <div class="logo">
-            <a href="../admin/index_admin.php">
+            <!-- <a href="../admin/index_admin.php"> -->
                 <img src="../image/logo.png" alt="CheapDeal Logo">
         </div>
         <p class="tagline">Revolutionizing Affordable Connectivity for Everyone. Bringing you faster service, better deals, and real-time account management – all in one place.</p>
@@ -271,5 +275,8 @@
         <p>&copy; 2024 CheapDeal. All Rights Reserved.</p>
     </div>
 </footer>
+
+</body>
+
 
 </html>

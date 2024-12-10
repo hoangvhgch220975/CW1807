@@ -29,4 +29,10 @@ try {
     $output = 'Unable to retrieve the user information: ' . $e->getMessage();
 }
 
-include "../template_admin/layout_admin.html.php";
+// Render form chỉnh sửa
+$title = 'Edit Information';
+ob_start();
+include '../template_admin/detail_user.html.php';
+$output = ob_get_clean();
+include '../template_admin/layout_admin.html.php';
+?> 

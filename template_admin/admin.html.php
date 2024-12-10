@@ -35,7 +35,7 @@
         <!-- Buttons for Actions -->
         <div class="flex justify-around mt-8 space-x-4">
             <a href="../admin/user.php" class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition duration-300 text-center">Manage Users</a>
-            <a href="../" class="bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-orange-500 hover:to-red-600 transition duration-300 text-center">Manage Devices</a>
+            <a href="../admin/device.php" class="bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-orange-500 hover:to-red-600 transition duration-300 text-center">Manage Devices</a>
             <a href="#" class="bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-purple-500 hover:to-pink-600 transition duration-300 text-center">Manage Services</a>
             <a href="#" class="bg-gradient-to-r from-teal-400 to-cyan-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-teal-500 hover:to-cyan-600 transition duration-300 text-center">Manage Packages</a>
         </div>

@@ -96,19 +96,19 @@
                     class="w-48 h-48 object-cover rounded-full border-4 border-purple-500 shadow-lg">
             </div>
 
-            <!-- Basic Info -->
             <div class="flex-1">
                 <h3 class="text-xl font-semibold text-white mb-4">Basic Info</h3>
                 <div class="space-y-2">
-                    <p class="text-lg text-gray-300"><strong>Full Name:</strong> <?= htmlspecialchars($users['full_name'], ENT_QUOTES, 'UTF-8') ?></p>
-                    <p class="text-lg text-gray-300"><strong>Gender:</strong> <?= htmlspecialchars($users['gender'], ENT_QUOTES, 'UTF-8') ?></p>
-                    <p class="text-lg text-gray-300"><strong>Email:</strong> <?= htmlspecialchars($users['email'], ENT_QUOTES, 'UTF-8') ?></p>
-                    <p class="text-lg text-gray-300"><strong>Phone Number:</strong> <?= htmlspecialchars($users['phone_number'], ENT_QUOTES, 'UTF-8') ?></p>
-                    <p class="text-lg text-gray-300"><strong>Date of Birth:</strong> <?= htmlspecialchars($users['date_of_birth'], ENT_QUOTES, 'UTF-8') ?></p>
-                    <p class="text-lg text-gray-300"><strong>Address:</strong> <?= htmlspecialchars($users['address'], ENT_QUOTES, 'UTF-8') ?></p>
-                    <p class="text-lg text-gray-300"><strong>Credit Card Number:</strong> <?= htmlspecialchars($users['credit_card_number'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <p class="text-lg text-gray-300"><strong>Full Name:</strong> <?= !empty($users['full_name']) ? htmlspecialchars($users['full_name'], ENT_QUOTES, 'UTF-8') : 'N/A' ?></p>
+                    <p class="text-lg text-gray-300"><strong>Gender:</strong> <?= !empty($users['gender']) ? htmlspecialchars($users['gender'], ENT_QUOTES, 'UTF-8') : 'N/A' ?></p>
+                    <p class="text-lg text-gray-300"><strong>Email:</strong> <?= !empty($users['email']) ? htmlspecialchars($users['email'], ENT_QUOTES, 'UTF-8') : 'N/A' ?></p>
+                    <p class="text-lg text-gray-300"><strong>Phone Number:</strong> <?= !empty($users['phone_number']) ? htmlspecialchars($users['phone_number'], ENT_QUOTES, 'UTF-8') : 'N/A' ?></p>
+                    <p class="text-lg text-gray-300"><strong>Date of Birth:</strong> <?= !empty($users['date_of_birth']) ? htmlspecialchars($users['date_of_birth'], ENT_QUOTES, 'UTF-8') : 'N/A' ?></p>
+                    <p class="text-lg text-gray-300"><strong>Address:</strong> <?= !empty($users['address']) ? htmlspecialchars($users['address'], ENT_QUOTES, 'UTF-8') : 'N/A' ?></p>
+                    <p class="text-lg text-gray-300"><strong>Credit Card Number:</strong> <?= !empty($users['credit_card_number']) ? htmlspecialchars($users['credit_card_number'], ENT_QUOTES, 'UTF-8') : 'N/A' ?></p>
                 </div>
             </div>
+
         </div>
 
         <!-- Actions -->
