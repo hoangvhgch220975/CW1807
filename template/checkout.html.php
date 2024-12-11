@@ -2,7 +2,7 @@
 session_start();
 include '../include/database.php';
 include '../include/databasefunction.php';
-
+//checkout
 // Fetch special offers from the database
 $sql = "SELECT * FROM special_offer";
 $result = $pdo->query($sql);
@@ -87,7 +87,7 @@ if (isset($_SESSION['cart'])) {
         function updateTotal() {
             var specialOfferId = document.getElementById('special_offer').value;
             var total = parseFloat(document.getElementById('total-price').getAttribute('data-total'));
-            
+
             // Fetch special offers from the PHP array
             var specialOffers = <?php echo json_encode($special_offers); ?>;
             var discount = 0;
@@ -309,7 +309,7 @@ if (isset($_SESSION['cart'])) {
                 <?php endforeach; ?>
             </div>
 
-            <form method="POST" action="">
+            <form method="POST" action="../customer/make_payment.php">
                 <div class="flex items-center justify-between mt-4">
                     <select id="special_offer" name="special_offer_id" class="border rounded p-2" onchange="updateTotal()">
                         <option value="">Choose a Special Offer</option>
@@ -320,11 +320,16 @@ if (isset($_SESSION['cart'])) {
                     <span class="font-semibold" id="total-price" data-total="<?php echo $total; ?>">Total: $<?php echo number_format($total, 2); ?></span>
                 </div>
 
+                <!-- Hidden fields to pass the special offer name and discount total -->
+                <input type="hidden" id="selected_special_offer_name" name="special_offer_name" value="">
+                <input type="hidden" id="final_total" name="final_total" value="<?php echo $total; ?>">
+
                 <div class="flex justify-between mt-6">
                     <a href="../template/cart.html.php" class=" text-gray-800 hover:bg-gray-500 p-2 rounded">Back to Cart</a>
-                    <a href="../customer/make_payment.php" class="btn-red">Process to Payment</a>
+                    <button type="submit" class="btn-red">Process to Payment</button>
                 </div>
             </form>
+
 
         <?php else: ?>
             <p>Your cart is empty. <a href="../customer/index_user.php" class="text-blue-600">Start shopping</a></p>
