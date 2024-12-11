@@ -15,7 +15,7 @@
             justify-content: space-between;
             /* Phân bố không gian đều giữa các phần tử */
             align-items: center;
-            padding: 10px 20px;
+            padding: 5px 10px;
             /* Thêm padding cho navbar */
         }
 
@@ -258,7 +258,8 @@
             font-size: 14px;
             margin-top: 20px;
         }
-
+        
+        /* Submenu Styles */
         .submenu {
             padding: 20px;
             /* Add some padding around the submenu */
@@ -339,7 +340,7 @@
                             <a href="#">Apple</a>
                             <a href="#">Samsung</a>
                             <a href="#">Android</a>
-                            <a href="#">Tablet</a>
+                            <a href="../customer/tabletOnly.php">Tablet</a>
                             <a href="#">Low-Cost Phones</a>
                         </div>
                         <div class="column">
@@ -361,8 +362,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">Data & Internet <span class="dropdown-arrow">&#9662;</span></a>
-                <a href="#">Tablets <span class="dropdown-arrow">&#9662;</span></a>
+                <a href="../customer/broadbandOnly.php">Data & Internet <span class="dropdown-arrow">&#9662;</span></a>
+                <a href="../customer/tabletOnly.php">Tablets <span class="dropdown-arrow">&#9662;</span></a>
                 <a href="#">Support <span class="dropdown-arrow">&#9662;</span></a>
             </nav>
 

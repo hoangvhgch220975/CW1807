@@ -39,6 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     exit; // Dừng script sau khi xử lý POST
 }
+
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -207,9 +213,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <th>Subtotal</th>
                 <th></th>
             </tr>";
+            
+
+       
 
         // Duyệt qua các loại sản phẩm trong giỏ hàng
         // Devices
+        
         if (isset($_SESSION['cart']['devices'])) {
             foreach ($_SESSION['cart']['devices'] as $product_id => $product) {
                 $product_name = htmlspecialchars($product['product_name']);
@@ -280,7 +290,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h3 >Total: $" . number_format($total, 2) . "</h3>";
 
         echo "<div class='checkout-links'>
-            <a href='../checkout.html.php'>Proceed to Checkout </a>
+            <a href='../customer/checkout.php'>Proceed to Checkout </a>
             <a href='../customer/index_user.php'>Continue Shopping</a>
         </div>";
     } else {

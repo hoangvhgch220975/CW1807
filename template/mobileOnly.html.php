@@ -17,6 +17,9 @@ $devices = getPhones($searchQuery);
     <title>ChealDeal.com</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        html{
+            scroll-behavior: smooth;
+        }
         /* CSS cho phần Products, Services, Packages */
         .section-heading {
             font-size: 40px;
@@ -141,8 +144,21 @@ $devices = getPhones($searchQuery);
                                 <div class="product-stock">Available: <?= htmlspecialchars($device['stock']) ?></div>
                             </div>
                             <a href="device_detail.php?device_id=<?= $device['device_id']; ?>">
-                                <img src="<?= 'image/imagedevice/' . htmlspecialchars($device['image']); ?>" alt="<?= htmlspecialchars($device['name']); ?>">
-                            </a>
+                            <?php
+                                    // Check if image exists in the first folder
+                                    $imagePath = 'image/imagedevice/' . htmlspecialchars($device['image'], ENT_QUOTES, 'UTF-8');
+
+                                    // If image is not found in the first folder, check the second folder
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = 'upload/' . htmlspecialchars($device['image'], ENT_QUOTES, 'UTF-8');
+                                    }
+
+                                    // If the image doesn't exist in either folder, use a default image
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../images/default-device.png';
+                                    }
+                                    ?>
+                                    <img src="<?= $imagePath ?>" alt="Device Image" class="device-image">                            </a>
                             <a href="device_detail.php?device_id=<?= $device['device_id']; ?>">
                                 <h3 class="product-name"><?= htmlspecialchars($device['name']); ?></h3>
                             </a>

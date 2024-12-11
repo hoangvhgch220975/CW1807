@@ -189,6 +189,7 @@ if (!$product) {
         .comment-text {
             margin-top: 5px;
         }
+
         button[type="submit"] {
             background-color: #d81920;
             /* Nền đỏ */
@@ -214,7 +215,21 @@ if (!$product) {
     <a class="back-to-products">←</a>
     <div class="product-details-container">
         <div class="product-image">
-            <img src="../image/imagedevice/<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
+            <?php
+            // Check if image exists in the first folder
+            $imagePath = '../image/imagedevice/' . htmlspecialchars($product['image'], ENT_QUOTES, 'UTF-8');
+
+            // If image is not found in the first folder, check the second folder
+            if (!file_exists($imagePath)) {
+                $imagePath = '../upload/' . htmlspecialchars($product['image'], ENT_QUOTES, 'UTF-8');
+            }
+
+            // If the image doesn't exist in either folder, use a default image
+            if (!file_exists($imagePath)) {
+                $imagePath = '../images/default-device.png';
+            }
+            ?>
+            <img src="<?= $imagePath ?>" alt="Device Image" class="device-image">
         </div>
         <div class="product-info">
             <h1><?= htmlspecialchars($product['name']); ?></h1>

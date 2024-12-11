@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheapDeals - Connecting You with the Best Phones and Plans</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
     
     <style>
         /* Navigation Bar Styles */
@@ -16,7 +18,7 @@
             justify-content: space-between;
             /* Phân bố không gian đều giữa các phần tử */
             align-items: center;
-            padding: 10px 20px;
+            padding: 5px 10px;
             /* Thêm padding cho navbar */
         }
 
@@ -146,90 +148,7 @@
             /* Kích thước mũi tên (có thể điều chỉnh) */
         }
 
-        /* Footer Styles */
-        .footer {
-            background-color: #990000;
-            /* Đỏ đậm */
-            color: white;
-            /* Chữ trắng */
-            padding: 50px 20px;
-            text-align: left;
-        }
-
-        .footer-top {
-            display: flex;
-            /* Sử dụng Flexbox */
-            align-items: center;
-            /* Căn giữa theo chiều dọc */
-            margin-bottom: 100px;
-        }
-
-        .footer-top .logo img {
-            max-width: 150px;
-            width: 100%;
-            /* Độ rộng 100% của logo */
-            height: auto;
-            /* Chiều cao tự động */
-            margin-right: 20px;
-            /* Khoảng cách giữa logo và tagline */
-        }
-
-        .footer-top .tagline {
-            font-size: 18px;
-            /* Tăng kích thước chữ */
-            line-height: 1.5;
-            max-width: 600px;
-            /* Giới hạn chiều rộng */
-            margin-right: 58%;
-        }
-
-        .footer-features {
-            display: flex;
-            justify-content: center;
-            /* Căn giữa các feature */
-            gap: 30px;
-            /* Khoảng cách giữa các mục */
-            margin-bottom: 100px;
-        }
-
-        .feature {
-            flex: 1 1 18%;
-            /* Mỗi cột chiếm khoảng 18% */
-            max-width: 200px;
-            /* Giới hạn chiều rộng */
-            text-align: center;
-        }
-
-        .feature i {
-            font-size: 36px;
-            /* Kích thước icon */
-            margin-bottom: 10px;
-        }
-
-        .feature h3 {
-            font-size: 20px;
-            /* Tăng kích thước chữ cho tiêu đề */
-            margin-bottom: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .feature p {
-            font-size: 16px;
-            /* Tăng kích thước chữ cho mô tả */
-            line-height: 1.5;
-        }
-
-        .footer-bottom {
-            font-size: 14px;
-            margin-top: 20px;
-        }
-
-        .submenu {
-            padding: 20px;
-            /* Add some padding around the submenu */
-        }
-
+        
         .submenu-container {
             display: flex;
             justify-content: space-around;
@@ -338,6 +257,91 @@
             transform: scale(1.2);
             /* Phóng to biểu tượng khi hover */
         }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #990000;
+            /* Đỏ đậm */
+            color: white;
+            /* Chữ trắng */
+            padding: 50px 20px;
+            text-align: left;
+        }
+
+        .footer-top {
+            display: flex;
+            /* Sử dụng Flexbox */
+            align-items: center;
+            /* Căn giữa theo chiều dọc */
+            margin-bottom: 100px;
+        }
+
+        .footer-top .logo img {
+            max-width: 150px;
+            width: 100%;
+            /* Độ rộng 100% của logo */
+            height: auto;
+            /* Chiều cao tự động */
+            margin-right: 20px;
+            /* Khoảng cách giữa logo và tagline */
+        }
+
+        .footer-top .tagline {
+            font-size: 18px;
+            /* Tăng kích thước chữ */
+            line-height: 1.5;
+            max-width: 600px;
+            /* Giới hạn chiều rộng */
+            margin-right: 58%;
+        }
+
+        .footer-features {
+            display: flex;
+            justify-content: center;
+            /* Căn giữa các feature */
+            gap: 30px;
+            /* Khoảng cách giữa các mục */
+            margin-bottom: 100px;
+        }
+
+        .feature {
+            flex: 1 1 18%;
+            /* Mỗi cột chiếm khoảng 18% */
+            max-width: 200px;
+            /* Giới hạn chiều rộng */
+            text-align: center;
+        }
+
+        .feature i {
+            font-size: 36px;
+            /* Kích thước icon */
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            /* Tăng kích thước chữ cho tiêu đề */
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .feature p {
+            font-size: 16px;
+            /* Tăng kích thước chữ cho mô tả */
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .submenu {
+            padding: 20px;
+            /* Add some padding around the submenu */
+        }
+
     </style>
 </head>
 
@@ -364,7 +368,7 @@
                             <a href="#">Apple</a>
                             <a href="#">Samsung</a>
                             <a href="#">Android</a>
-                            <a href="#">Tablet</a>
+                            <a href="tabletOnly.php">Tablet</a>
                             <a href="#">Low-Cost Phones</a>
                         </div>
                         <div class="column">
@@ -386,11 +390,12 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">Data & Internet <span class="dropdown-arrow">&#9662;</span></a>
-                <a href="#">Tablets <span class="dropdown-arrow">&#9662;</span></a>
+                <a href="router.php">Data & Internet <span class="dropdown-arrow">&#9662;</span></a>
+                <a href="tabletOnly.php">Tablets <span class="dropdown-arrow">&#9662;</span></a>
                 <a href="#">Support <span class="dropdown-arrow">&#9662;</span></a>
             </nav>
 
+            <!-- Icons -->
 
 
             <!-- Tìm kiếm -->

@@ -208,7 +208,21 @@ if (!$package) {
     <a class="back-to-homepage" href="index.php">←</a>
     <div class="package-details-container">
         <div class="package-image">
-            <img src="../image/packetimage/<?= htmlspecialchars($package['image']); ?>" alt="<?= htmlspecialchars($package['name']); ?>">
+            <?php
+            // Check if image exists in the first folder
+            $imagePath = '../image/packetimage/' . htmlspecialchars($package['image'], ENT_QUOTES, 'UTF-8');
+
+            // If image is not found in the first folder, check the second folder
+            if (!file_exists($imagePath)) {
+                $imagePath = '../upload/' . htmlspecialchars($package['image'], ENT_QUOTES, 'UTF-8');
+            }
+
+            // If the image doesn't exist in either folder, use a default image
+            if (!file_exists($imagePath)) {
+                $imagePath = '../images/default-package.png';
+            }
+            ?>
+            <img src="<?= $imagePath ?>" alt="Package Image" class="device-image">
         </div>
         <div class="package-info">
             <h1><?= htmlspecialchars($package['name']); ?></h1>

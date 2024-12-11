@@ -18,6 +18,9 @@
         <title>ChealDeal.com</title>
         <link rel="stylesheet" href="../styles.css">
         <style>
+            html {
+                scroll-behavior: smooth;
+            }
             .section-heading {
                 font-size: 50px;
                 text-align: center;
@@ -204,8 +207,21 @@
                                     <div class="product-stock">Available: <?= htmlspecialchars($device['stock']) ?></div>
                                 </div>
                                 <a href="../customer/detail_device.php?device_id=<?= $device['device_id']; ?>">
-                                <img src="<?= '../image/imagedevice/' . htmlspecialchars($device['image']); ?>" alt="<?= htmlspecialchars($device['name']); ?>">
-                                </a>
+                                <?php
+                                    // Check if image exists in the first folder
+                                    $imagePath = '../image/imagedevice/' . htmlspecialchars($device['image'], ENT_QUOTES, 'UTF-8');
+
+                                    // If image is not found in the first folder, check the second folder
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../upload/' . htmlspecialchars($device['image'], ENT_QUOTES, 'UTF-8');
+                                    }
+
+                                    // If the image doesn't exist in either folder, use a default image
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../images/default-device.png';
+                                    }
+                                    ?>
+                                    <img src="<?= $imagePath ?>" alt="Device Image" class="device-image">                                </a>
                                 <a href="../customer/detail_device.php?device_id=<?= $device['device_id']; ?>">
                                     <h3 class="product-name"><?= htmlspecialchars($device['name']); ?></h3>
                                 </a>
@@ -236,8 +252,21 @@
                         <?php foreach ($services as $service): ?>
                             <div class="product-card">
                                 <a href="../customer/detail_service.php?service_id=<?= $service['service_id']; ?>">
-                                    <img src="<?= '../image/serviceimage/' . htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>">
-                                </a>
+                                <?php
+                                    // Check if image exists in the first folder
+                                    $imagePath = '../image/serviceimage/' . htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8');
+
+                                    // If image is not found in the first folder, check the second folder
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../upload/' . htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8');
+                                    }
+
+                                    // If the image doesn't exist in either folder, use a default image
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../images/default-service.png';
+                                    }
+                                    ?>
+                                    <img src="<?= $imagePath ?>" alt="Service Image" class="device-image">                                </a>
                                 <a href="../customer/detail_service.php?service_id=<?= $service['service_id']; ?>">
                                     <h3 class="product-name"><?= htmlspecialchars($service['name']); ?></h3>
                                 </a>
@@ -268,8 +297,21 @@
                         <?php foreach ($packages as $package): ?>
                             <div class="product-card">
                                 <a href="../customer/detail_package.php?package_id=<?= $package['package_id']; ?>">
-                                    <img src="<?= '../image/packetimage/' . htmlspecialchars($package['image']); ?>" alt="<?= htmlspecialchars($package['name']); ?>">
-                                </a>
+                                <?php
+                                    // Check if image exists in the first folder
+                                    $imagePath = '../image/packetimage/' . htmlspecialchars($package['image'], ENT_QUOTES, 'UTF-8');
+
+                                    // If image is not found in the first folder, check the second folder
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../upload/' . htmlspecialchars($package['image'], ENT_QUOTES, 'UTF-8');
+                                    }
+
+                                    // If the image doesn't exist in either folder, use a default image
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../images/default-package.png';
+                                    }
+                                    ?>
+                                    <img src="<?= $imagePath ?>" alt="Package Image" class="device-image">                                </a>
                                 <a href="../customer/detail_package.php?package_id=<?= $package['package_id']; ?>">
                                     <h3 class="product-name"><?= htmlspecialchars($package['name']); ?></h3>
                                 </a>

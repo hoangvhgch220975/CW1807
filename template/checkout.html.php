@@ -2,6 +2,7 @@
 session_start();
 include '../include/database.php';
 include '../include/databasefunction.php';
+
 // Fetch special offers from the database
 $sql = "SELECT * FROM special_offer";
 $result = $pdo->query($sql);
@@ -13,6 +14,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 // Calculate the total price of cart items
 $total = 0;
 $cart_items = [];
+$special_offer_id = null; // Initialize special offer variable
 
 if (isset($_SESSION['cart'])) {
     // Process Devices
@@ -69,6 +71,7 @@ if (isset($_SESSION['cart'])) {
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -80,6 +83,27 @@ if (isset($_SESSION['cart'])) {
     <title>Checkout</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <link href="../styles.css" rel="stylesheet">
+    <script>
+        function updateTotal() {
+            var specialOfferId = document.getElementById('special_offer').value;
+            var total = parseFloat(document.getElementById('total-price').getAttribute('data-total'));
+            
+            // Fetch special offers from the PHP array
+            var specialOffers = <?php echo json_encode($special_offers); ?>;
+            var discount = 0;
+
+            // Find the selected offer and apply discount
+            specialOffers.forEach(function(offer) {
+                if (offer.id == specialOfferId) {
+                    discount = offer.discount_percentage;
+                }
+            });
+
+            // Calculate the new total with the discount
+            var newTotal = total - (total * discount / 100);
+            document.getElementById('total-price').innerText = '$' + newTotal.toFixed(2);
+        }
+    </script>
     <style>
         /* Red Tone Theme */
         body {
@@ -221,7 +245,7 @@ if (isset($_SESSION['cart'])) {
         }
 
         a {
-            color: #991b1b;
+            color: #828282;
             text-decoration: none;
         }
 
@@ -285,20 +309,23 @@ if (isset($_SESSION['cart'])) {
                 <?php endforeach; ?>
             </div>
 
-            <div class="flex items-center justify-between mt-4">
-                <select class="border rounded p-2">
-                    <option value="">Choose a Special Offer</option>
-                    <?php foreach ($special_offers as $offer): ?>
-                        <option value="<?php echo $offer['id']; ?>"><?php echo htmlspecialchars($offer['name']); ?> (<?php echo $offer['discount_percentage']; ?>% off)</option>
-                    <?php endforeach; ?>
-                </select>
-                <span class="font-semibold">Total: $<?php echo number_format($total, 2); ?></span>
-            </div>
+            <form method="POST" action="">
+                <div class="flex items-center justify-between mt-4">
+                    <select id="special_offer" name="special_offer_id" class="border rounded p-2" onchange="updateTotal()">
+                        <option value="">Choose a Special Offer</option>
+                        <?php foreach ($special_offers as $offer): ?>
+                            <option value="<?php echo $offer['id']; ?>"><?php echo htmlspecialchars($offer['name']); ?> (<?php echo $offer['discount_percentage']; ?>% off)</option>
+                        <?php endforeach; ?>
+                    </select>
+                    <span class="font-semibold" id="total-price" data-total="<?php echo $total; ?>">Total: $<?php echo number_format($total, 2); ?></span>
+                </div>
 
-            <div class="flex justify-between mt-6">
-                <a href="../template/cart.html.php" class="bg-gray-200 text-gray-800 hover:bg-gray-300 p-2 rounded">Back to Cart</a>
-                <a href="../template/payment.html.php" class="btn-red">Process to Payment</a>
-            </div>
+                <div class="flex justify-between mt-6">
+                    <a href="../template/cart.html.php" class=" text-gray-800 hover:bg-gray-500 p-2 rounded">Back to Cart</a>
+                    <a href="../customer/make_payment.php" class="btn-red">Process to Payment</a>
+                </div>
+            </form>
+
         <?php else: ?>
             <p>Your cart is empty. <a href="../customer/index_user.php" class="text-blue-600">Start shopping</a></p>
         <?php endif; ?>

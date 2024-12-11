@@ -214,7 +214,21 @@ if (!$service || !$serviceDetails) {
     <a class="back-to-homepage" href="index.php">← Back to Services</a>
     <div class="service-details-container">
         <div class="service-image">
-            <img src="../image/serviceimage/<?= htmlspecialchars($service['image']); ?>" alt="<?= htmlspecialchars($service['name']); ?>">
+            <?php
+            // Check if image exists in the first folder
+            $imagePath = '../image/serviceimage/' . htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8');
+
+            // If image is not found in the first folder, check the second folder
+            if (!file_exists($imagePath)) {
+                $imagePath = '../upload/' . htmlspecialchars($service['image'], ENT_QUOTES, 'UTF-8');
+            }
+
+            // If the image doesn't exist in either folder, use a default image
+            if (!file_exists($imagePath)) {
+                $imagePath = '../images/default-service.png';
+            }
+            ?>
+            <img src="<?= $imagePath ?>" alt="Service Image" class="device-image">
         </div>
         <div class="service-info">
             <h1><?= htmlspecialchars($service['name']); ?></h1>
