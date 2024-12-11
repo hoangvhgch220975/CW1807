@@ -148,7 +148,7 @@
             text-align: center;
         }
 
-        
+
 
         /* Tạo không gian cho bảng cuộn */
         .table-container {
@@ -179,14 +179,9 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="action-btn-container">
-            <a href="#" class="btn-primary mb-4">Add</a> <!-- Dòng 1 -->
-            <a href="#?id=<?= htmlspecialchars($device['device_id'], ENT_QUOTES, 'UTF-8') ?>" class="btn-warning mb-4">Edit</a> <!-- Dòng 2 -->
-            <form action="#" method="post" class="inline">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($device['device_id'], ENT_QUOTES, 'UTF-8') ?>">
-                <button type="submit" class="btn-danger mb-4" onclick="return confirm('Are you sure you want to delete this device?');">
-                    Delete
-                </button> <!-- Dòng 3 -->
-            </form>
+            <a href="../admin/add_package.php" class="btn-primary mb-4">Add</a> <!-- Dòng 1 -->
+            <a href="../admin/edit_package_list.php" class="btn-warning mb-4">Edit</a> <!-- Dòng 2 -->
+            <a href="../admin/delete_package_list.php" class="btn-danger">Delete</a> <!-- Dòng 3 -->
         </div>
     </div>
 
@@ -226,9 +221,23 @@
                         <tr class="table-row">
                             <td class="py-3 px-4 border-b border-gray-200 text-center"><?= htmlspecialchars($package['package_id'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td class="py-3 px-4 border-b border-gray-200 text-center">
-                            <a href="../admin/detail_package.php?package_id=<?= $package['package_id']; ?>">
-                                <img src="<?= !empty($package['image']) ? '../image/packetimage/' . htmlspecialchars($package['image'], ENT_QUOTES, 'UTF-8') : '../image/data1.png' ?>" alt="Package Image" class="device-image">
-                            </a>
+                                <a href="../admin/detail_package.php?package_id=<?= $package['package_id']; ?>">
+                                    <?php
+                                    // Check if image exists in the first folder
+                                    $imagePath = '../image/packetimage/' . htmlspecialchars($package['image'], ENT_QUOTES, 'UTF-8');
+
+                                    // If image is not found in the first folder, check the second folder
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../upload/' . htmlspecialchars($package['image'], ENT_QUOTES, 'UTF-8');
+                                    }
+
+                                    // If the image doesn't exist in either folder, use a default image
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = '../images/default-package.png';
+                                    }
+                                    ?>
+                                    <img src="<?= $imagePath ?>" alt="Package Image" class="device-image">
+                                </a>
                             </td>
                             <td class="py-3 px-4 border-b border-gray-200"><?= htmlspecialchars($package['name'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td class="py-3 px-4 border-b border-gray-200"><?= htmlspecialchars($package['description'], ENT_QUOTES, 'UTF-8') ?></td>

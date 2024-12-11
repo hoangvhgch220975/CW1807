@@ -7,7 +7,7 @@
     <title>Edit User Information</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="../styles.css" rel="stylesheet">
+    <!-- <link href="../styles.css" rel="stylesheet"> -->
 </head>
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">

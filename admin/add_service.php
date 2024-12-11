@@ -60,10 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $service_id = $pdo->lastInsertId();
 
             // Add service details to the service_detail table
-            $stmt_detail = $pdo->prepare('INSERT INTO service_detail (service_id, call_minutes, data_volume, message_count, price, stock, package_type, image)
-                                        VALUES (:service_id, :call_minutes, :data_volume, :message_count, :price, :stock, :package_type, :image)');
+            $stmt_detail = $pdo->prepare('INSERT INTO service_detail (service_id, name, description, call_minutes, data_volume, message_count, price, stock, package_type, image)
+                                        VALUES (:service_id, :name, :description, :call_minutes, :data_volume, :message_count, :price, :stock, :package_type, :image)');
             $stmt_detail->execute([
                 ':service_id' => $service_id,
+                ':name' => $name,
+                ':description' => $description,
                 ':call_minutes' => $call_minutes,
                 ':data_volume' => $data_volume,
                 ':message_count' => $message_count,

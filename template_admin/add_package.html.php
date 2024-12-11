@@ -19,7 +19,7 @@
             /* Align content to the top */
             height: 120vh;
             box-sizing: border-box;
-            margin-top: 350px;
+            margin-top: 400px;
         }
 
         .container {
@@ -118,8 +118,6 @@
         a {
             display: inline-block;
             margin-top: 20px;
-            text-align: center;
-            font-size: 16px;
             color: #007bff;
             text-decoration: none;
         }
@@ -127,92 +125,70 @@
         a:hover {
             text-decoration: underline;
         }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-                width: 90%;
-                height: auto;
-                /* Allow container to adjust height on smaller screens */
-            }
-        }
     </style>
 </head>
 
+
+
 <body>
     <div class="container">
-        <h2>Add New Service</h2>
+        <h2>Add a New Package</h2>
 
+        <!-- Error/Sucess Messages -->
         <?php if (isset($error)): ?>
-            <div class="error">
-                <p><?= htmlspecialchars($error) ?></p>
-            </div>
+            <div class="error"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
-        <?php if (isset($_GET['message'])): ?>
-            <div class="success">
-                <p><?= htmlspecialchars($_GET['message']) ?></p>
-            </div>
-        <?php endif; ?>
-
-        <form action="add_service.php" method="POST" enctype="multipart/form-data">
+        <!-- Form for creating a package -->
+        <form action="../admin/add_package.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="name">Service Name</label>
-                <input type="text" id="name" name="name" required placeholder="Enter service name" value="<?= isset($name) ? htmlspecialchars($name) : '' ?>">
+                <label for="name">Package Name</label>
+                <input type="text" id="name" name="name" required>
             </div>
 
             <div class="form-group">
-                <label for="description">Service Description</label>
-                <textarea id="description" name="description" rows="4" required placeholder="Enter service description"><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
             </div>
 
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" id="price" name="price" required placeholder="Enter price" value="<?= isset($price) ? htmlspecialchars($price) : '' ?>" min="0" step="0.01">
-            </div>
-
-            <div class="form-group">
-                <label for="stock">Stock Quantity</label>
-                <input type="number" id="stock" name="stock" required placeholder="Enter stock quantity" value="<?= isset($stock) ? htmlspecialchars($stock) : '' ?>" min="0">
-            </div>
-
-            <div class="form-group">
-                <label for="package_type">Package Type</label>
-                <select id="package_type" name="package_type" required>
-                    <option value="Call & Message" <?= isset($package_type) && $package_type == 'Call & Message' ? 'selected' : '' ?>>Call & Message</option>
-                    <option value="Data & Message" <?= isset($package_type) && $package_type == 'Data & Message' ? 'selected' : '' ?>>Data & Message</option>
-                    <option value="Call, Data & Message" <?= isset($package_type) && $package_type == 'Call, Data & Message' ? 'selected' : '' ?>>Call, Data & Message</option>
-                    <option value="Call & Data" <?= isset($package_type) && $package_type == 'Call & Data' ? 'selected' : '' ?>>Call & Data</option>
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="Phone">Phone</option>
+                    <option value="Tablet">Tablet</option>
+                    <option value="Router">Router</option>
                 </select>
             </div>
 
+            <!-- Service Include -->
             <div class="form-group">
-                <label for="image">Service Image</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <label for="service_include">Service Include</label>
+                <select id="service_include" name="service_include" required>
+                    <?php foreach ($services as $service): ?>
+                        <option value="<?= $service['service_id'] ?>"><?= htmlspecialchars($service['name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
+            <!-- Device Include -->
             <div class="form-group">
-                <label for="call_minutes">Call Minutes</label>
-                <input type="number" id="call_minutes" name="call_minutes" required value="<?= isset($call_minutes) ? htmlspecialchars($call_minutes) : '' ?>">
+                <label for="device_include">Device Include</label>
+                <select id="device_include" name="device_include" required>
+                    <?php foreach ($devices as $device): ?>
+                        <option value="<?= htmlspecialchars($device['device_id']) ?>"><?= htmlspecialchars($device['name']) ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
-            <div class="form-group">
-                <label for="data_volume">Data Volume (GB)</label>
-                <input type="number" id="data_volume" name="data_volume" required value="<?= isset($data_volume) ? htmlspecialchars($data_volume) : '' ?>">
-            </div>
+
 
             <div class="form-group">
-                <label for="message_count">Message Count</label>
-                <input type="number" id="message_count" name="message_count" required value="<?= isset($message_count) ? htmlspecialchars($message_count) : '' ?>">
+                <label for="image">Package Image</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
             </div>
 
-            <div class="form-group">
-                <button type="submit">Add Service</button>
-            </div>
+            <button type="submit">Add Package</button>
         </form>
-
-        <a href="../admin/service.php">Back to Service List</a>
     </div>
 </body>
 

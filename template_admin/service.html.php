@@ -233,10 +233,10 @@
 
                                     // If the image doesn't exist in either folder, use a default image
                                     if (!file_exists($imagePath)) {
-                                        $imagePath = '../images/default-device.png';
+                                        $imagePath = '../images/default-service.png';
                                     }
                                     ?>
-                                    <img src="<?= $imagePath ?>" alt="Device Image" class="device-image">
+                                    <img src="<?= $imagePath ?>" alt="Service Image" class="device-image">
                                 </a>
                             </td>
                             <td class="py-3 px-4 border-b border-gray-200"><?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?></td>

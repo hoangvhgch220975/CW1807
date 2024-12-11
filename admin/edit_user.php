@@ -5,7 +5,7 @@ include '../include/databasefunction.php';
 
 // Kiểm tra nếu người dùng đã đăng nhập và có quyền admin
 if (!isset($_SESSION['account_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: ../login.php');
+    header('Location: ../login/login.php');
     exit();
 }
 
